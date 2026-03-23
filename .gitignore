@@ -20,3 +20,4 @@ yarn-error.log*
 pnpm-debug.log*
 backend-runtime.log
 .synthesis.local.json
+.moltbook.local.json
