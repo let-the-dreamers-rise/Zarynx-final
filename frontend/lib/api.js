@@ -1,8 +1,21 @@
-export const backendUrl =
-  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000";
+const localhostHosts = new Set(["localhost", "127.0.0.1"]);
+
+export function getBackendUrl() {
+  if (process.env.NEXT_PUBLIC_BACKEND_URL) {
+    return process.env.NEXT_PUBLIC_BACKEND_URL;
+  }
+
+  if (typeof window === "undefined") {
+    return "http://localhost:4000";
+  }
+
+  return localhostHosts.has(window.location.hostname)
+    ? "http://localhost:4000"
+    : window.location.origin;
+}
 
 export async function fetcher(path) {
-  const response = await fetch(`${backendUrl}${path}`);
+  const response = await fetch(`${getBackendUrl()}${path}`);
   if (!response.ok) {
     const message = await response.text();
     throw new Error(message || `Request failed: ${response.status}`);
@@ -11,7 +24,7 @@ export async function fetcher(path) {
 }
 
 export async function postJson(path, payload) {
-  const response = await fetch(`${backendUrl}${path}`, {
+  const response = await fetch(`${getBackendUrl()}${path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

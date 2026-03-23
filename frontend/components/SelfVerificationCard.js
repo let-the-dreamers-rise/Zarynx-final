@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { SelfAppBuilder } from "@selfxyz/qrcode";
 import SectionCard from "./SectionCard";
 import StatusPill from "./StatusPill";
-import { backendUrl, postJson } from "../lib/api";
+import { getBackendUrl, postJson } from "../lib/api";
 
 const SelfQRcodeWrapper = dynamic(
   () => import("@selfxyz/qrcode").then((module) => module.default),
@@ -17,11 +17,11 @@ export default function SelfVerificationCard({ onVerified, mockMode = false }) {
 
   const scope = process.env.NEXT_PUBLIC_SELF_SCOPE || "";
   const endpoint =
-    process.env.NEXT_PUBLIC_SELF_ENDPOINT || `${backendUrl}/api/self/verify`;
+    process.env.NEXT_PUBLIC_SELF_ENDPOINT || `${getBackendUrl()}/api/self/verify`;
   const appName = process.env.NEXT_PUBLIC_SELF_APP_NAME || "ZARYNX VAAP";
 
   const refreshSession = async (userId) => {
-    const response = await fetch(`${backendUrl}/api/self/session/${userId}`);
+    const response = await fetch(`${getBackendUrl()}/api/self/session/${userId}`);
     const data = await response.json();
     setSession(data);
     if (data?.status === "verified" && onVerified) {

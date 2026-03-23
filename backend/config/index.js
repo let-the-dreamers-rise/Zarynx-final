@@ -1,10 +1,21 @@
+const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const dotenv = require("dotenv");
 const { ethers } = require("ethers");
 
-const rootDir = path.resolve(__dirname, "..", "..");
+const backendDir = path.resolve(__dirname, "..");
+const workspaceRoot = path.resolve(backendDir, "..");
+const hasWorkspaceLayout =
+  fs.existsSync(path.join(workspaceRoot, "backend", "package.json")) &&
+  fs.existsSync(path.join(workspaceRoot, "frontend", "package.json"));
+const rootDir = hasWorkspaceLayout ? workspaceRoot : backendDir;
+const storageRoot = process.env.ZARYNX_STORAGE_ROOT || (process.env.VERCEL ? path.join(os.tmpdir(), "zarynx-vaap") : rootDir);
+
 dotenv.config({ path: path.join(rootDir, ".env.local") });
 dotenv.config({ path: path.join(rootDir, ".env") });
+dotenv.config({ path: path.join(backendDir, ".env.local") });
+dotenv.config({ path: path.join(backendDir, ".env") });
 
 const toBool = (value, fallback = false) => {
   if (value === undefined || value === null || value === "") {
@@ -25,6 +36,8 @@ const port = Number(process.env.PORT || 4000);
 
 const config = {
   rootDir,
+  backendDir,
+  storageRoot,
   port,
   mockMode: toBool(process.env.MOCK_MODE, true),
   backendUrl: process.env.NEXT_PUBLIC_BACKEND_URL || `http://localhost:${port}`,

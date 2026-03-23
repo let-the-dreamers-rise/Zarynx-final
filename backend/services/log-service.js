@@ -2,10 +2,11 @@ const fs = require("fs");
 const path = require("path");
 const { config } = require("../config");
 
-const runtimeDir = path.join(config.rootDir, "backend", "data", "runtime");
-const agentLogPath = path.join(config.rootDir, "agent_log.json");
-const agentCardPath = path.join(config.rootDir, "agent.json");
-const conversationPath = path.join(config.rootDir, "conversation.txt");
+const storageRoot = config.storageRoot || config.rootDir;
+const runtimeDir = path.join(storageRoot, "backend", "data", "runtime");
+const agentLogPath = path.join(storageRoot, "agent_log.json");
+const agentCardPath = path.join(storageRoot, "agent.json");
+const conversationPath = path.join(storageRoot, "conversation.txt");
 
 const ensureDir = (targetPath) => {
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
