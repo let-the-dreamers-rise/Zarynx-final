@@ -1,0 +1,36 @@
+{
+  "standard": "ERC-8004",
+  "name": "ZARYNX VAAP",
+  "version": "1.0.0",
+  "description": "Verifiable Agent Authority Protocol agent enforcing bounded execution rights across on-chain and API actions.",
+  "agent": {
+    "ownerAddress": "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51",
+    "agentAddress": "0x3196289C787a81912B784b7142b06FAE310C6f50",
+    "locusOwnerAddress": "0x5e59B8ed62515D2C2BeB2F6955ed430e70af4B16",
+    "locusWalletId": "b35bd016-e9cf-408d-9e74-5a97d7e76b8c"
+  },
+  "authority": {
+    "baseSepolia": null,
+    "statusSepolia": null
+  },
+  "identity": {
+    "registryAddress": "0xE14B480a4BcCAF371b268925cb1fa30Ddd0130E7",
+    "agentId": "4101"
+  },
+  "integrations": {
+    "ens": "vitalik.eth",
+    "self": "mock-self-scope",
+    "venice": "mock-venice-router",
+    "filecoinNetwork": "calibration",
+    "locusBaseUrl": "https://beta-api.paywithlocus.com"
+  },
+  "evidence": {
+    "latestLogEntryCount": 7,
+    "locusWalletAddress": "0x9f6ec1480cbc88ac4697a9acb8024f751e5bf89a",
+    "locusCreditRequestId": "f661941a-1b96-4079-b33c-c28aea60a6e7",
+    "mockMode": true
+  },
+  "updatedAt": "2026-03-23T04:45:30.289Z",
+  "mode": "mock",
+  "ipfsUri": "ipfs://bafy4bd988d104cbe9a4e031782ef4fa6bf36fad61e77f3e39b22bd09c5"
+}

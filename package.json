@@ -1,0 +1,19 @@
+{
+  "name": "zarynx-vaap",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "contracts",
+    "backend",
+    "frontend",
+    "agent"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "dev:contracts": "npm run node --workspace contracts",
+    "build:frontend": "npm run build --workspace frontend",
+    "test:contracts": "npm run test --workspace contracts",
+    "agent:run": "npm run start --workspace agent"
+  }
+}
