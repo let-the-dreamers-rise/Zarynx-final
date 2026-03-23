@@ -1,8 +1,8 @@
 # ZARYNX VAAP
 
-This repo now defaults to a fast simulated demo path. `MOCK_MODE=true` is enabled by default in the backend config, which swaps live integrations for deterministic mock services so the entire product can be demoed locally without funded wallets or external credentials.
+ZARYNX VAAP is a verifiable agent authority protocol that turns natural-language intent into bounded execution. It combines authority-scoped on-chain actions, identity-gated execution, ENS resolution, structured receipts, and an operator dashboard so AI agents can act under enforceable policy instead of backend trust.
 
-ZARYNX VAAP is a verifiable AI agent protocol that gives an execution agent bounded rights and forces those rights to be enforced on-chain instead of inside backend-only logic.
+This repo ships with a deterministic preview runtime by default. `MOCK_MODE=true` keeps the entire workflow inspectable end-to-end when partner credentials or funded wallets are unavailable, while the live integrations and deployment paths remain in the codebase for real execution.
 
 ## Problem
 
@@ -20,6 +20,47 @@ ZARYNX VAAP combines:
 - Filecoin Pin upload support for evidence artifacts
 - EigenCompute container packaging for external TEE deployment
 - Venice-based intent reasoning
+
+## Competition Positioning
+
+ZARYNX is positioned around one core claim:
+
+- AI agents should not receive backend-only trust
+- operators should delegate bounded rights
+- those rights should be inspectable, revocable, and enforceable
+- every execution should leave machine-readable receipts
+
+This maps directly to the strongest tracks for the project:
+
+- `Synthesis Open Track`
+- `Best Use of Locus`
+- `Best Use of Delegations`
+- `Agents With Receipts — ERC-8004`
+- `Go Gasless: Deploy & Transact on Status Network with Your AI Agent`
+- `Best Use Case with Agentic Storage`
+- `Best Self Protocol Integration`
+- `ENS Open Integration`
+- `Best Use of EigenCompute`
+- `Private Agents, Trusted Actions`
+
+## Proof Surfaces Already Available
+
+- published Synthesis project:
+  - `https://synthesis.devfolio.co/projects/zarynx-vaap-c97a`
+- live demo:
+  - `https://skill-deploy-hxmacndaqk-codex-agent-deploys.vercel.app`
+- live Moltbook post:
+  - `https://www.moltbook.com/post/12c2b1f0-4700-4a1e-a5a9-cc81931b98e8`
+- live Locus wallet registration evidence:
+  - wallet id `b35bd016-e9cf-408d-9e74-5a97d7e76b8c`
+  - wallet address `0x9f6ec1480cbc88ac4697a9acb8024f751e5bf89a`
+  - credit request `f661941a-1b96-4079-b33c-c28aea60a6e7`
+- ENS resolution evidence:
+  - `vitalik.eth -> 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
+- structured execution receipts:
+  - `agent.json`
+  - `agent_log.json`
+  - `conversation.txt`
 
 ## Architecture
 
@@ -68,6 +109,17 @@ conversation.txt
 - MetaMask setup can be simulated in the dashboard without a browser wallet
 
 Set `MOCK_MODE=false` if you want to switch the repo back to real integrations later.
+
+## Final-Hour Upgrade Strategy
+
+If you have limited time before judging, do not spread effort equally across every partner. The fastest remaining real proofs from the current setup are:
+
+1. Status Sepolia deploy plus one real authority execution
+2. Base Sepolia deploy plus one real ERC-8004 registration
+3. MetaMask execution permissions from a browser wallet that supports delegations
+4. Locus payment settlement if wallet funding clears
+
+The detailed final-hour ranking and commands live in `FINAL_HOUR_PLAN.md`.
 
 ## Previously Captured Live Evidence
 
@@ -199,6 +251,8 @@ npm run deploy:status-sepolia --workspace contracts
 3. Click `Simulate Wallet` to generate mock MetaMask smart account and permission payloads.
 4. Execute intents from the dashboard or `agent/agent.js`.
 5. Inspect simulated tx hashes, mock CIDs, and mock TEE receipts in the dashboard and `agent_log.json`.
+
+For a judge-facing talk track, use `DEMO_SCRIPT.md`.
 
 ## Live Mode Requirements
 
