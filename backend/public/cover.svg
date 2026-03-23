@@ -1,0 +1,83 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="90" x2="1440" y2="810" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1220"/>
+      <stop offset="0.52" stop-color="#111C2E"/>
+      <stop offset="1" stop-color="#1A2238"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 180) rotate(17) scale(340 220)">
+      <stop stop-color="#FF8C42" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#FF8C42" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1270 190) rotate(152) scale(320 210)">
+      <stop stop-color="#29C7AC" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#29C7AC" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stroke" x1="250" y1="210" x2="1350" y2="690" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8C42" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#29C7AC" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" rx="32" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glowA)"/>
+  <rect width="1600" height="900" fill="url(#glowB)"/>
+
+  <g opacity="0.08">
+    <path d="M0 120H1600" stroke="white"/>
+    <path d="M0 260H1600" stroke="white"/>
+    <path d="M0 400H1600" stroke="white"/>
+    <path d="M0 540H1600" stroke="white"/>
+    <path d="M0 680H1600" stroke="white"/>
+    <path d="M220 0V900" stroke="white"/>
+    <path d="M480 0V900" stroke="white"/>
+    <path d="M740 0V900" stroke="white"/>
+    <path d="M1000 0V900" stroke="white"/>
+    <path d="M1260 0V900" stroke="white"/>
+  </g>
+
+  <rect x="170" y="150" width="1260" height="600" rx="36" fill="rgba(9,19,35,0.72)" stroke="url(#stroke)" stroke-width="2"/>
+
+  <rect x="220" y="215" width="240" height="42" rx="21" fill="rgba(255,140,66,0.16)" stroke="rgba(255,140,66,0.35)"/>
+  <text x="250" y="242" fill="#FFB378" font-family="'IBM Plex Mono', monospace" font-size="20" letter-spacing="6">SYNTHESIS HACKATHON</text>
+
+  <text x="220" y="365" fill="#EDF3FF" font-family="'Space Grotesk', sans-serif" font-size="110" font-weight="700">ZARYNX</text>
+  <text x="220" y="455" fill="#BFD1F2" font-family="'Space Grotesk', sans-serif" font-size="56" font-weight="500">Verifiable Agent Authority Protocol</text>
+
+  <text x="220" y="545" fill="#97A7C3" font-family="'Space Grotesk', sans-serif" font-size="30">
+    Bounded execution rights for AI agents with operator identity gates,
+  </text>
+  <text x="220" y="590" fill="#97A7C3" font-family="'Space Grotesk', sans-serif" font-size="30">
+    authority constraints, structured receipts, and multi-integration proof surfaces.
+  </text>
+
+  <g>
+    <rect x="220" y="645" width="240" height="54" rx="27" fill="rgba(41,199,172,0.13)" stroke="rgba(41,199,172,0.3)"/>
+    <text x="262" y="679" fill="#B6FFF0" font-family="'IBM Plex Mono', monospace" font-size="24">AUTHORITY ENGINE</text>
+
+    <rect x="490" y="645" width="208" height="54" rx="27" fill="rgba(255,140,66,0.13)" stroke="rgba(255,140,66,0.3)"/>
+    <text x="536" y="679" fill="#FFD0AB" font-family="'IBM Plex Mono', monospace" font-size="24">ERC-8004</text>
+
+    <rect x="728" y="645" width="226" height="54" rx="27" fill="rgba(41,199,172,0.13)" stroke="rgba(41,199,172,0.3)"/>
+    <text x="771" y="679" fill="#B6FFF0" font-family="'IBM Plex Mono', monospace" font-size="24">LOCUS + ENS</text>
+
+    <rect x="984" y="645" width="246" height="54" rx="27" fill="rgba(255,140,66,0.13)" stroke="rgba(255,140,66,0.3)"/>
+    <text x="1027" y="679" fill="#FFD0AB" font-family="'IBM Plex Mono', monospace" font-size="24">STATUS + SELF</text>
+  </g>
+
+  <g>
+    <rect x="1130" y="255" width="230" height="230" rx="28" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)"/>
+    <rect x="1170" y="295" width="150" height="24" rx="12" fill="rgba(255,255,255,0.08)"/>
+    <rect x="1170" y="339" width="120" height="20" rx="10" fill="rgba(255,255,255,0.08)"/>
+    <rect x="1170" y="388" width="150" height="42" rx="16" fill="rgba(41,199,172,0.14)" stroke="rgba(41,199,172,0.25)"/>
+    <text x="1206" y="416" fill="#B6FFF0" font-family="'IBM Plex Mono', monospace" font-size="20">EXECUTE</text>
+    <rect x="1170" y="448" width="150" height="22" rx="11" fill="rgba(255,255,255,0.08)"/>
+  </g>
+
+  <g opacity="0.95">
+    <path d="M1060 300L1105 345L1060 390" stroke="#FF8C42" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1105 345H1255" stroke="#FF8C42" stroke-width="18" stroke-linecap="round"/>
+    <path d="M1260 520L1215 565L1260 610" stroke="#29C7AC" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1215 565H1065" stroke="#29C7AC" stroke-width="18" stroke-linecap="round"/>
+  </g>
+</svg>
