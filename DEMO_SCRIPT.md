@@ -13,10 +13,17 @@ Open:
 - `agent.json`
 - `agent_log.json`
 - the published Synthesis page
+- the Status explorer links for the live proof txs
 
 Say:
 
 "This project is built as a verifiable proof package. The architecture, manifest, execution logs, public submission, and live demo are all available for inspection. Judges can verify both the control plane and the evidence layer."
+
+Call out these live Status proofs:
+- deploy: `0xd301899d35ccd629db9823359121f297633cc2ade81007ca5428d1997cd069dc`
+- execute: `0x4e07ac649efe5831bd0152832f7dc754a5984c5c94156d5138cbdcf23533f25d`
+- revoke: `0xd18c27ad245f96bc36d1f21d37d664c8585c26fabbe29a60a3f0106201f441f5`
+- blocked after revoke: `0x7a7cc0804f334b239b10d184de196499412f00a2d6e3b8450461867c1a2702f5`
 
 ### 2. Explain the bounded authority model
 
@@ -53,15 +60,15 @@ Say:
 
 Use the intents:
 
-`Send 0.00005 ETH to vitalik.eth on Status Sepolia`
+`Send 0 ETH to the approved Status target`
 
 then
 
-`Send 1 ETH to vitalik.eth on Status Sepolia`
+`Try the same call again after revoke`
 
 Say:
 
-"This is the key behavior. A valid bounded action goes through the authority lane. But when the requested amount exceeds the permitted window, the agent does not get to improvise. The action is rejected, and the rejection itself is logged as evidence."
+"This is the key behavior. A valid bounded action goes through the authority lane. After the owner revokes authority, the exact same lane stops working. The agent does not get to improvise around that policy. The blocked call is visible onchain and in the receipt trail."
 
 ### 6. Show the receipts and partner story
 

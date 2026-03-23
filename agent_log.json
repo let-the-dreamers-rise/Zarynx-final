@@ -1,6 +1,6 @@
 {
   "protocol": "ZARYNX-VAAP",
-  "updatedAt": "2026-03-23T04:45:30.314Z",
+  "updatedAt": "2026-03-23T07:13:32.000Z",
   "entries": [
     {
       "step": "locus_registration",
@@ -245,6 +245,104 @@
         "mode": "mock"
       },
       "recordedAt": "2026-03-23T04:45:30.314Z"
+    },
+    {
+      "step": "status_deploy_live",
+      "input": {
+        "network": "statusSepolia",
+        "gasless": true
+      },
+      "decision": {
+        "action": "deploy_authority_manager",
+        "network": "statusSepolia",
+        "gasless": true
+      },
+      "action": "status_deploy",
+      "txHash": "0xd301899d35ccd629db9823359121f297633cc2ade81007ca5428d1997cd069dc",
+      "result": {
+        "success": true,
+        "mode": "live",
+        "contractAddress": "0x6DB5C52b5146d278c1cb158832659EF562382013",
+        "deployer": "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51",
+        "agent": "0x3196289C787a81912B784b7142b06FAE310C6f50",
+        "maxSpendEth": "0.0001",
+        "allowedTargets": [
+          "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51"
+        ],
+        "explorerUrl": "https://sepoliascan.status.network/tx/0xd301899d35ccd629db9823359121f297633cc2ade81007ca5428d1997cd069dc",
+        "blockNumber": 18176143
+      },
+      "recordedAt": "2026-03-23T07:11:35.561Z"
+    },
+    {
+      "step": "status_execute_live",
+      "input": {
+        "target": "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51",
+        "amountEth": "0",
+        "reason": "status-live-zero-proof"
+      },
+      "decision": {
+        "action": "status_transfer",
+        "network": "statusSepolia",
+        "requiresIdentity": true
+      },
+      "action": "status_transfer",
+      "txHash": "0x4e07ac649efe5831bd0152832f7dc754a5984c5c94156d5138cbdcf23533f25d",
+      "result": {
+        "mode": "live",
+        "target": "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51",
+        "amountEth": "0",
+        "success": true,
+        "executionRef": "0x0352fd172b5cbd7f5f7933d857d9bf57e136f1573f7fee10612d3d9e06d3568c",
+        "explorerUrl": "https://sepoliascan.status.network/tx/0x4e07ac649efe5831bd0152832f7dc754a5984c5c94156d5138cbdcf23533f25d",
+        "blockNumber": 18176180,
+        "note": "Gasless zero-value execution proof on Status Sepolia."
+      },
+      "recordedAt": "2026-03-23T07:12:44.000Z"
+    },
+    {
+      "step": "status_revoke_live",
+      "input": {
+        "network": "statusSepolia"
+      },
+      "decision": {
+        "action": "revoke_authority",
+        "network": "statusSepolia"
+      },
+      "action": "revoke",
+      "txHash": "0xd18c27ad245f96bc36d1f21d37d664c8585c26fabbe29a60a3f0106201f441f5",
+      "result": {
+        "mode": "live",
+        "success": true,
+        "explorerUrl": "https://sepoliascan.status.network/tx/0xd18c27ad245f96bc36d1f21d37d664c8585c26fabbe29a60a3f0106201f441f5",
+        "blockNumber": 18176182
+      },
+      "recordedAt": "2026-03-23T07:12:46.000Z"
+    },
+    {
+      "step": "status_post_revoke_blocked_live",
+      "input": {
+        "target": "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51",
+        "amountEth": "0",
+        "reason": "status-after-revoke-proof"
+      },
+      "decision": {
+        "action": "status_transfer",
+        "network": "statusSepolia",
+        "requiresIdentity": true
+      },
+      "action": "status_transfer",
+      "txHash": "0x7a7cc0804f334b239b10d184de196499412f00a2d6e3b8450461867c1a2702f5",
+      "result": {
+        "mode": "live",
+        "rejected": true,
+        "receiptStatus": 0,
+        "blockNumber": 18176232,
+        "executionRef": "0x87a23068812c4999f633a14083ad3121968109da1c6f8aa00581e48e49789dce",
+        "explorerUrl": "https://sepoliascan.status.network/tx/0x7a7cc0804f334b239b10d184de196499412f00a2d6e3b8450461867c1a2702f5",
+        "error": "transaction execution reverted"
+      },
+      "recordedAt": "2026-03-23T07:13:32.000Z"
     }
   ]
 }

@@ -8,6 +8,7 @@ const {
   getAgentWallet,
   getOwnerWallet,
   getProvider,
+  getTxOverrides,
 } = require("./blockchain-service");
 
 const getAuthorityAddress = (networkKey) => {
@@ -70,7 +71,8 @@ async function updateAuthority({ networkKey = "baseSepolia", newAgent, maxSpendE
   const tx = await contract.updateAuthority(
     newAgent,
     ethers.parseEther(String(maxSpendEth)),
-    active
+    active,
+    getTxOverrides(networkKey)
   );
   const receipt = await tx.wait();
   return {
@@ -86,7 +88,7 @@ async function setTarget({ networkKey = "baseSepolia", target, allowed }) {
   }
 
   const contract = getAuthorityContract(networkKey, "owner");
-  const tx = await contract.setTarget(target, allowed);
+  const tx = await contract.setTarget(target, allowed, getTxOverrides(networkKey));
   const receipt = await tx.wait();
   return {
     txHash: tx.hash,
@@ -101,7 +103,7 @@ async function revoke(networkKey = "baseSepolia") {
   }
 
   const contract = getAuthorityContract(networkKey, "owner");
-  const tx = await contract.revoke();
+  const tx = await contract.revoke(getTxOverrides(networkKey));
   const receipt = await tx.wait();
   return {
     txHash: tx.hash,
@@ -116,7 +118,7 @@ async function reactivate(networkKey = "baseSepolia") {
   }
 
   const contract = getAuthorityContract(networkKey, "owner");
-  const tx = await contract.reactivate();
+  const tx = await contract.reactivate(getTxOverrides(networkKey));
   const receipt = await tx.wait();
   return {
     txHash: tx.hash,
@@ -137,7 +139,8 @@ async function execute({ networkKey = "baseSepolia", target, amountEth, data = "
     ethers.parseEther(String(amountEth)),
     data,
     reason,
-    executionRef
+    executionRef,
+    getTxOverrides(networkKey)
   );
   const receipt = await tx.wait();
   return {

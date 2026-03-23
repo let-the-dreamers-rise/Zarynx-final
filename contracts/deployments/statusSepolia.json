@@ -1,0 +1,16 @@
+{
+  "network": "statusSepolia",
+  "chainId": 1660990954,
+  "deployer": "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51",
+  "owner": "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51",
+  "agent": "0x3196289C787a81912B784b7142b06FAE310C6f50",
+  "maxSpendEth": "0.0001",
+  "allowedTargets": [
+    "0x2aF9Bd8b228012A7d9bbF8f3daBF6B222a9d8f51"
+  ],
+  "contracts": {
+    "authorityManager": "0x6DB5C52b5146d278c1cb158832659EF562382013"
+  },
+  "txHash": "0xd301899d35ccd629db9823359121f297633cc2ade81007ca5428d1997cd069dc",
+  "deployedAt": "2026-03-23T07:11:35.561Z"
+}

@@ -35,7 +35,7 @@ This maps directly to the strongest tracks for the project:
 - `Synthesis Open Track`
 - `Best Use of Locus`
 - `Best Use of Delegations`
-- `Agents With Receipts — ERC-8004`
+- `Agents With Receipts - ERC-8004`
 - `Go Gasless: Deploy & Transact on Status Network with Your AI Agent`
 - `Best Use Case with Agentic Storage`
 - `Best Self Protocol Integration`
@@ -51,6 +51,12 @@ This maps directly to the strongest tracks for the project:
   - `https://skill-deploy-hxmacndaqk-codex-agent-deploys.vercel.app`
 - live Moltbook post:
   - `https://www.moltbook.com/post/12c2b1f0-4700-4a1e-a5a9-cc81931b98e8`
+- live Status Sepolia gasless authority proof:
+  - contract `0x6DB5C52b5146d278c1cb158832659EF562382013`
+  - deploy tx `0xd301899d35ccd629db9823359121f297633cc2ade81007ca5428d1997cd069dc`
+  - execute tx `0x4e07ac649efe5831bd0152832f7dc754a5984c5c94156d5138cbdcf23533f25d`
+  - revoke tx `0xd18c27ad245f96bc36d1f21d37d664c8585c26fabbe29a60a3f0106201f441f5`
+  - blocked post-revoke tx `0x7a7cc0804f334b239b10d184de196499412f00a2d6e3b8450461867c1a2702f5`
 - live Locus wallet registration evidence:
   - wallet id `b35bd016-e9cf-408d-9e74-5a97d7e76b8c`
   - wallet address `0x9f6ec1480cbc88ac4697a9acb8024f751e5bf89a`
@@ -114,10 +120,10 @@ Set `MOCK_MODE=false` if you want to switch the repo back to real integrations l
 
 If you have limited time before judging, do not spread effort equally across every partner. The fastest remaining real proofs from the current setup are:
 
-1. Status Sepolia deploy plus one real authority execution
-2. Base Sepolia deploy plus one real ERC-8004 registration
-3. MetaMask execution permissions from a browser wallet that supports delegations
-4. Locus payment settlement if wallet funding clears
+1. Base Sepolia deploy plus one real ERC-8004 registration
+2. MetaMask execution permissions from a browser wallet that supports delegations
+3. Locus payment settlement if wallet funding clears
+4. Filecoin upload if credentials appear in time
 
 The detailed final-hour ranking and commands live in `FINAL_HOUR_PLAN.md`.
 
@@ -131,6 +137,11 @@ The detailed final-hour ranking and commands live in `FINAL_HOUR_PLAN.md`.
 - Locus credit request status: `PENDING` as of `2026-03-19T09:54:39.131Z`
 - ENS resolution used in the dashboard: `vitalik.eth -> 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
 - Status Sepolia deployment attempt result: rejected due `insufficient funds for gas * price + value`
+- Status Sepolia live authority contract: `0x6DB5C52b5146d278c1cb158832659EF562382013`
+- Status Sepolia gasless deploy tx: `0xd301899d35ccd629db9823359121f297633cc2ade81007ca5428d1997cd069dc`
+- Status Sepolia gasless zero-value execute tx: `0x4e07ac649efe5831bd0152832f7dc754a5984c5c94156d5138cbdcf23533f25d`
+- Status Sepolia gasless revoke tx: `0xd18c27ad245f96bc36d1f21d37d664c8585c26fabbe29a60a3f0106201f441f5`
+- Status Sepolia blocked post-revoke tx: `0x7a7cc0804f334b239b10d184de196499412f00a2d6e3b8450461867c1a2702f5`
 - AuthorityManager contract tests: `4 passing`
 
 These artifacts are recorded in [`agent_log.json`](/Users/ASHWIN%20GOYAL/OneDrive/Desktop/syntheai/agent_log.json) and [`agent.json`](/Users/ASHWIN%20GOYAL/OneDrive/Desktop/syntheai/agent.json).
@@ -155,8 +166,8 @@ These artifacts are recorded in [`agent_log.json`](/Users/ASHWIN%20GOYAL/OneDriv
 
 ### Status Network
 
-- simulated authority lane with revocation and target enforcement in demo mode
-- compatible bytecode target (`paris`) retained for later funded deployment
+- live gasless deploy, execute, revoke, and blocked post-revoke proof on Status Sepolia
+- preview runtime retained for the UI demo path
 
 ### Filecoin
 

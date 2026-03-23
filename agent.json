@@ -11,7 +11,7 @@
   },
   "authority": {
     "baseSepolia": null,
-    "statusSepolia": null
+    "statusSepolia": "0x6DB5C52b5146d278c1cb158832659EF562382013"
   },
   "identity": {
     "registryAddress": "0xE14B480a4BcCAF371b268925cb1fa30Ddd0130E7",
@@ -25,12 +25,16 @@
     "locusBaseUrl": "https://beta-api.paywithlocus.com"
   },
   "evidence": {
-    "latestLogEntryCount": 10,
+    "latestLogEntryCount": 14,
     "locusWalletAddress": "0x9f6ec1480cbc88ac4697a9acb8024f751e5bf89a",
     "locusCreditRequestId": "f661941a-1b96-4079-b33c-c28aea60a6e7",
+    "statusGaslessDeployTxHash": "0xd301899d35ccd629db9823359121f297633cc2ade81007ca5428d1997cd069dc",
+    "statusGaslessExecuteTxHash": "0x4e07ac649efe5831bd0152832f7dc754a5984c5c94156d5138cbdcf23533f25d",
+    "statusGaslessRevokeTxHash": "0xd18c27ad245f96bc36d1f21d37d664c8585c26fabbe29a60a3f0106201f441f5",
+    "statusBlockedAfterRevokeTxHash": "0x7a7cc0804f334b239b10d184de196499412f00a2d6e3b8450461867c1a2702f5",
     "mockMode": true
   },
-  "updatedAt": "2026-03-23T06:02:04.590Z",
-  "mode": "mock",
+  "updatedAt": "2026-03-23T07:13:32.000Z",
+  "mode": "hybrid",
   "ipfsUri": "ipfs://bafy4bd988d104cbe9a4e031782ef4fa6bf36fad61e77f3e39b22bd09c5"
 }

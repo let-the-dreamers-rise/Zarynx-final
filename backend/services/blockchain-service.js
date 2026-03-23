@@ -29,6 +29,16 @@ const getWallet = (networkKey, privateKey) => {
 const getOwnerWallet = (networkKey) => getWallet(networkKey, config.keys.ownerPrivateKey);
 const getAgentWallet = (networkKey) => getWallet(networkKey, config.keys.agentPrivateKey);
 
+const getTxOverrides = (networkKey) => {
+  if (networkKey === "statusSepolia") {
+    return {
+      gasPrice: 0n,
+      type: 0,
+    };
+  }
+  return {};
+};
+
 const explorerTxUrl = (networkKey, txHash) => `${getChain(networkKey).explorerBaseUrl}/tx/${txHash}`;
 const explorerAddressUrl = (networkKey, address) => `${getChain(networkKey).explorerBaseUrl}/address/${address}`;
 
@@ -38,6 +48,7 @@ module.exports = {
   getWallet,
   getOwnerWallet,
   getAgentWallet,
+  getTxOverrides,
   explorerTxUrl,
   explorerAddressUrl,
 };
