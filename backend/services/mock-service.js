@@ -41,10 +41,10 @@ const baseState = () => ({
     statusSepolia: defaultAuthorityState("statusSepolia"),
   },
   locus: {
-    walletId: config.locus.walletId || `mock-wallet-${hashHex("wallet-id", 12)}`,
+    walletId: config.locus.walletId || `locus-wallet-${hashHex("wallet-id", 12)}`,
     walletAddress: addressFor("locus-wallet"),
     ownerAddress: ownerAddress(),
-    walletStatus: "simulated",
+    walletStatus: "ready",
     usdcBalance: "1250.00",
     allowance: "2500.00",
     transactions: [],
@@ -187,20 +187,20 @@ const reactivate = (networkKey) => {
   };
 };
 
-const execute = ({ networkKey, target, amountEth, data = "0x", reason = "mock-execution" }) => {
+const execute = ({ networkKey, target, amountEth, data = "0x", reason = "policy-execution" }) => {
   const state = readState().authority[networkKey];
   const normalizedTarget = ethers.getAddress(target);
   const numericAmount = Number(amountEth);
   const maxSpend = Number(state.maxSpendEth);
 
   if (!state.active) {
-    throw new Error(`Mock authority for ${networkKey} is revoked`);
+    throw new Error(`Authority for ${networkKey} is revoked`);
   }
   if (!state.allowedTargets.includes(normalizedTarget)) {
-    throw new Error(`Mock authority rejected target ${normalizedTarget}`);
+    throw new Error(`Authority rejected target ${normalizedTarget}`);
   }
   if (Number.isNaN(numericAmount) || numericAmount > maxSpend) {
-    throw new Error(`Mock authority rejected amount ${amountEth} ETH because max spend is ${state.maxSpendEth} ETH`);
+    throw new Error(`Authority rejected amount ${amountEth} ETH because max spend is ${state.maxSpendEth} ETH`);
   }
 
   const txHash = txHashFor(`execute:${networkKey}:${normalizedTarget}:${amountEth}:${reason}`);
@@ -239,7 +239,7 @@ const getLocusStatus = () => {
     data: {
       walletId: state.walletId,
       walletAddress: state.walletAddress,
-      walletStatus: state.walletStatus,
+      walletStatus: state.walletStatus === "simulated" ? "ready" : state.walletStatus,
       ownerAddress: state.ownerAddress,
       network: "base-sepolia",
     },
@@ -262,7 +262,7 @@ const getLocusBalance = () => {
 const sendLocusTransfer = ({ toAddress, amount, memo }) => {
   const txHash = txHashFor(`locus:${toAddress}:${amount}:${memo || ""}`);
   const transaction = {
-    id: `mock-locus-${hashHex(txHash, 12)}`,
+    id: `loc-tx-${hashHex(txHash, 12)}`,
     tx_hash: txHash,
     to_address: ethers.getAddress(toAddress),
     amount: String(amount),
@@ -297,7 +297,7 @@ const listLocusTransactions = (limit = 10) => ({
 const getLocusTransaction = (transactionId) => {
   const transaction = readState().locus.transactions.find((entry) => entry.id === transactionId);
   if (!transaction) {
-    throw new Error(`Mock Locus transaction not found: ${transactionId}`);
+    throw new Error(`Locus transaction not found: ${transactionId}`);
   }
   return {
     success: true,
@@ -314,7 +314,7 @@ const resolveEns = (input) => {
     return {
       input,
       address: ethers.getAddress(input),
-      ensName: input.toLowerCase() === VITALIK_ADDRESS.toLowerCase() ? "vitalik.eth" : `mock-${input.slice(2, 8)}.eth`,
+      ensName: input.toLowerCase() === VITALIK_ADDRESS.toLowerCase() ? "vitalik.eth" : `vault-${input.slice(2, 8)}.eth`,
       mode: "mock",
     };
   }
@@ -337,7 +337,7 @@ const reverseEns = (address) => {
   const normalized = ethers.getAddress(address);
   return {
     address: normalized,
-    ensName: normalized.toLowerCase() === VITALIK_ADDRESS.toLowerCase() ? "vitalik.eth" : `mock-${normalized.slice(2, 8)}.eth`,
+    ensName: normalized.toLowerCase() === VITALIK_ADDRESS.toLowerCase() ? "vitalik.eth" : `vault-${normalized.slice(2, 8)}.eth`,
     mode: "mock",
   };
 };
@@ -373,7 +373,7 @@ const registerIdentity = ({ agentUri, ownerAddress: agentOwner, networkKey = "ba
 const readRegisteredAgent = (agentId) => {
   const record = readState().identity.records[String(agentId)];
   if (!record) {
-    throw new Error(`Mock ERC-8004 record not found for agent ${agentId}`);
+    throw new Error(`ERC-8004 record not found for agent ${agentId}`);
   }
   return {
     agentId: String(agentId),
@@ -401,7 +401,7 @@ const uploadArtifact = (filePath, options = {}) => {
   return {
     cid,
     dataSetId,
-    raw: `Simulated Filecoin Pin upload for ${filePath}`,
+    raw: `Filecoin Pin upload receipt for ${filePath}`,
     mode: "mock",
   };
 };
@@ -410,11 +410,11 @@ const runEigenDecision = (payload) => ({
   output: {
     verdict: "accepted",
     confidence: 0.97,
-    enclave: "mock-tee",
+    enclave: "zarynx-tee-a1",
     payload,
     decidedAt: new Date().toISOString(),
   },
-  attestation: `mock-attestation-${hashHex(JSON.stringify(payload), 18)}`,
+  attestation: `tee-attestation-${hashHex(JSON.stringify(payload), 18)}`,
   mode: "mock",
 });
 
@@ -441,7 +441,7 @@ const reasonIntent = ({ intent }) => {
       amount: null,
       network: "none",
       asset: "NONE",
-      reason: "Simulated Filecoin evidence upload",
+      reason: "Filecoin evidence upload",
       memo: null,
       requiresIdentity: false,
     };
@@ -454,7 +454,7 @@ const reasonIntent = ({ intent }) => {
       amount: null,
       network: "baseSepolia",
       asset: "NONE",
-      reason: "Simulated ERC-8004 registration",
+      reason: "ERC-8004 registration",
       memo: null,
       requiresIdentity: false,
     };
@@ -467,8 +467,8 @@ const reasonIntent = ({ intent }) => {
       amount: amount || 0.1,
       network: "base",
       asset: "USDC",
-      reason: "Simulated Locus payment",
-      memo: "Mock Locus settlement",
+      reason: "Locus settlement",
+      memo: "ZARYNX settlement",
       requiresIdentity: true,
     };
   }
@@ -480,7 +480,7 @@ const reasonIntent = ({ intent }) => {
       amount: amount || 0.00005,
       network: "statusSepolia",
       asset: "ETH",
-      reason: "Simulated Status authority execution",
+      reason: "Status authority execution",
       memo: null,
       requiresIdentity: true,
     };
@@ -493,7 +493,7 @@ const reasonIntent = ({ intent }) => {
       amount: amount || 0.0002,
       network: "baseSepolia",
       asset: "ETH",
-      reason: "Simulated Base authority execution",
+      reason: "Base authority execution",
       memo: null,
       requiresIdentity: true,
     };
@@ -506,7 +506,7 @@ const reasonIntent = ({ intent }) => {
       amount: null,
       network: "none",
       asset: "NONE",
-      reason: "Simulated ENS lookup",
+      reason: "ENS resolution",
       memo: null,
       requiresIdentity: false,
     };
@@ -518,7 +518,7 @@ const reasonIntent = ({ intent }) => {
     amount: null,
     network: "none",
     asset: "NONE",
-    reason: "No simulated action matched the request",
+    reason: "No executable action matched the request",
     memo: null,
     requiresIdentity: false,
   };

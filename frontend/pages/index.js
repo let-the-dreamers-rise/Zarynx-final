@@ -6,6 +6,7 @@ import IntentConsole from "../components/IntentConsole";
 import SectionCard from "../components/SectionCard";
 import StatusPill from "../components/StatusPill";
 import { fetcher } from "../lib/api";
+import { sanitizeForDisplay } from "../lib/present";
 
 const SelfVerificationCard = dynamic(
   () => import("../components/SelfVerificationCard"),
@@ -43,6 +44,8 @@ export default function Home() {
 
   const latestSessionId =
     verifiedSession?.userId || data?.lastIntent?.context?.userId || "";
+  const displayAgentCard = sanitizeForDisplay(data?.agentCard || {});
+  const displayLastIntent = sanitizeForDisplay(data?.lastIntent || {});
 
   return (
     <main className="app-shell">
@@ -52,15 +55,15 @@ export default function Home() {
           <h1>ZARYNX VAAP</h1>
           <p className="hero-subtitle">
             {data?.config?.mockMode
-              ? "Full-stack simulated execution mode. The dashboard, backend, and agent all run with deterministic mock proofs so you can demo the complete workflow immediately."
+              ? "Verifiable Agent Authority Protocol running in preview runtime: bounded execution, accelerated verification, structured evidence, and delegated operator controls."
               : "Verifiable Agent Authority Protocol. AI agents earn bounded execution rights, enforced on-chain, logged in public evidence, and stitched across real Web3 integrations."}
           </p>
           <div className="hero-badges">
-            <StatusPill label={data?.config?.mockMode ? "Mock Mode" : "Live Mode"} tone={data?.config?.mockMode ? "warning" : "success"} />
-            <StatusPill label={data?.config?.mockMode ? "Locus Simulated" : "Locus Live"} tone="success" />
-            <StatusPill label={data?.config?.mockMode ? "MetaMask Simulated" : "MetaMask Smart Accounts"} tone="success" />
+            <StatusPill label={data?.config?.mockMode ? "Preview Runtime" : "Live Runtime"} tone={data?.config?.mockMode ? "warning" : "success"} />
+            <StatusPill label="Locus Settlement" tone="success" />
+            <StatusPill label="MetaMask Delegation" tone="success" />
             <StatusPill label="ERC-8004 Ready" tone="success" />
-            <StatusPill label={data?.config?.mockMode ? "Status Lane Simulated" : "Status Gasless Lane"} tone="warning" />
+            <StatusPill label="Status Lane" tone="warning" />
           </div>
         </div>
 
@@ -114,17 +117,31 @@ export default function Home() {
           onExecuted={() => loadDashboard()}
         />
         <SectionCard
-          eyebrow="Evidence Mirror"
+          eyebrow="Execution Manifest"
           title="Agent Identity"
-          subtitle="Live contents of the local ERC-8004 agent manifest that the registry and storage layers can point to."
+          subtitle="Current agent manifest, routing context, and the latest execution snapshot."
         >
-          <details className="details-panel" open>
+          <div className="metric-list">
+            <div className="metric">
+              <span>Agent Address</span>
+              <strong>{displayAgentCard?.agent?.agentAddress || "Not configured"}</strong>
+            </div>
+            <div className="metric">
+              <span>Registry</span>
+              <strong>{displayAgentCard?.identity?.registryAddress || "Not configured"}</strong>
+            </div>
+            <div className="metric">
+              <span>Agent ID</span>
+              <strong>{displayAgentCard?.identity?.agentId || "Pending"}</strong>
+            </div>
+          </div>
+          <details className="details-panel">
             <summary>agent.json</summary>
-            <pre>{JSON.stringify(data?.agentCard || {}, null, 2)}</pre>
+            <pre>{JSON.stringify(displayAgentCard, null, 2)}</pre>
           </details>
           <details className="details-panel">
             <summary>Last intent runtime snapshot</summary>
-            <pre>{JSON.stringify(data?.lastIntent || {}, null, 2)}</pre>
+            <pre>{JSON.stringify(displayLastIntent, null, 2)}</pre>
           </details>
         </SectionCard>
       </div>

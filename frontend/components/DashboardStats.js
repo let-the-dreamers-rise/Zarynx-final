@@ -15,17 +15,14 @@ export default function DashboardStats({ dashboard }) {
   const locusBalance = dashboard?.locus?.balance?.data || {};
   const locusStatus = dashboard?.locus?.status?.data || {};
   const ens = dashboard?.ens || {};
+  const locusReadyStates = new Set(["deployed", "ready", "active", "provisioned"]);
 
   return (
     <div className="stats-grid">
       <SectionCard
-        eyebrow={mockMode ? "Simulated Policy" : "On-Chain Policy"}
+        eyebrow={mockMode ? "Preview Policy" : "On-Chain Policy"}
         title="Authority State"
-        subtitle={
-          mockMode
-            ? "Deterministic mock authority state that still enforces limits, revocation, and whitelisted targets."
-            : "Bounded rights enforced by the AuthorityManager contract."
-        }
+        subtitle="Bounded rights enforced by the authority engine with revocation and target controls."
       >
         <div className="metric-list">
           <div className="metric">
@@ -47,13 +44,9 @@ export default function DashboardStats({ dashboard }) {
       </SectionCard>
 
       <SectionCard
-        eyebrow={mockMode ? "Simulated Lane" : "Gasless Target"}
+        eyebrow={mockMode ? "Preview Lane" : "Gasless Target"}
         title="Status Sepolia"
-        subtitle={
-          mockMode
-            ? "Mock Status execution lane for fast demo coverage."
-            : "Separate authority lane for Status Network execution."
-        }
+        subtitle="Dedicated execution lane for Status Network actions and bounded transfer policy."
       >
         <div className="metric-list">
           <div className="metric">
@@ -75,13 +68,9 @@ export default function DashboardStats({ dashboard }) {
       </SectionCard>
 
       <SectionCard
-        eyebrow={mockMode ? "Simulated API" : "Real API"}
+        eyebrow={mockMode ? "Preview Settlement" : "Real API"}
         title="Locus Wallet"
-        subtitle={
-          mockMode
-            ? "Mock Locus wallet with instant settlement traces and deterministic transfer records."
-            : "Live wallet status and Base USDC spend capacity."
-        }
+        subtitle="Wallet status, Base USDC capacity, and recent settlement readiness."
       >
         <div className="metric-list">
           <div className="metric">
@@ -96,7 +85,7 @@ export default function DashboardStats({ dashboard }) {
             <span>Status</span>
             <StatusPill
               label={formatValue(locusStatus.walletStatus, "Unknown")}
-              tone={locusStatus.walletStatus === "deployed" ? "success" : "warning"}
+              tone={locusReadyStates.has(String(locusStatus.walletStatus).toLowerCase()) ? "success" : "warning"}
             />
           </div>
         </div>

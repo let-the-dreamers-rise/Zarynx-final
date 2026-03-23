@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://skill-deploy-ds8b6zt2a3-codex-agent-deploys.vercel.app/api/$1"
+      "destination": "https://skill-deploy-hxmacndaqk-codex-agent-deploys.vercel.app/api/$1"
     }
   ]
 }

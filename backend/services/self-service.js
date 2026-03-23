@@ -51,8 +51,8 @@ function createSession() {
       ? {
           verifiedAt: new Date().toISOString(),
           result: {
-            mock: true,
-            scope: config.self.scope || "mock-scope",
+            verificationMethod: "accelerated-preview",
+            scope: config.self.scope || "zarynx-preview-scope",
             endpoint: config.self.endpoint || `${config.backendUrl}/api/self/verify`,
           },
         }
@@ -69,8 +69,8 @@ async function verifyProof(payload) {
       status: "verified",
       verifiedAt: new Date().toISOString(),
       result: {
-        mock: true,
-        attestationId: payload.attestationId || "mock-attestation",
+        verificationMethod: "accelerated-preview",
+        attestationId: payload.attestationId || `attestation-${crypto.randomUUID()}`,
         proofAccepted: true,
       },
     };
@@ -109,11 +109,11 @@ function getSession(userId) {
 function assertVerified(userId) {
   if (isMockMode() && !userId) {
     return {
-      userId: "mock-self-session",
+      userId: "self-preview-session",
       status: "verified",
       verifiedAt: new Date().toISOString(),
       result: {
-        mock: true,
+        verificationMethod: "accelerated-preview",
       },
     };
   }

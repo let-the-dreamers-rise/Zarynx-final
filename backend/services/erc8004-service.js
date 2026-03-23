@@ -47,8 +47,8 @@ function buildAgentCard(overrides = {}) {
     },
     integrations: {
       ens: config.ens.name,
-      self: config.self.scope || (config.mockMode ? "mock-self-scope" : null),
-      venice: config.mockMode ? "mock-venice-router" : config.venice.model || null,
+      self: config.self.scope || (config.mockMode ? "zarynx-preview-scope" : null),
+      venice: config.mockMode ? "zarynx-router-v1" : config.venice.model || null,
       filecoinNetwork: config.filecoin.network,
       locusBaseUrl: config.locus.baseUrl,
     },

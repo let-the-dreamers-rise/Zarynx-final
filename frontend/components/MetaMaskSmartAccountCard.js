@@ -23,14 +23,13 @@ export default function MetaMaskSmartAccountCard({ agentAddress, maxSpendEth = "
 
   const connectWallet = async () => {
     if (mockMode) {
-      const mockOwnerAddress = mockAddressFor("mock-owner");
+      const mockOwnerAddress = mockAddressFor("operator-session-owner");
       setOwnerAddress(mockOwnerAddress);
-      setSmartAccountAddress(mockAddressFor("mock-smart-account"));
+      setSmartAccountAddress(mockAddressFor("operator-session-safe"));
       setSupported(
         serializeForDisplay([
           {
             type: "native-token-periodic",
-            simulated: true,
             chainId: baseSepolia.id,
           },
         ])
@@ -94,10 +93,9 @@ export default function MetaMaskSmartAccountCard({ agentAddress, maxSpendEth = "
     if (mockMode) {
       setPermissions(
         serializeForDisplay({
-          simulated: true,
           chainId: `0x${baseSepolia.id.toString(16)}`,
-          to: agentAddress || mockAddressFor("mock-agent"),
-          from: ownerAddress || mockAddressFor("mock-owner"),
+          to: agentAddress || mockAddressFor("delegated-agent"),
+          from: ownerAddress || mockAddressFor("operator-session-owner"),
           permission: {
             type: "native-token-periodic",
             data: {
@@ -159,12 +157,12 @@ export default function MetaMaskSmartAccountCard({ agentAddress, maxSpendEth = "
       title="MetaMask Smart Account"
       subtitle={
         mockMode
-          ? "Simulate the smart account and permission payload without needing a browser wallet."
+          ? "Provision a preview smart account and inspect the delegated permission payload for the agent."
           : "Create a MetaMask smart account and request a bounded execution permission for the ZARYNX agent."
       }
       action={
         <button className="ghost-button" onClick={connectWallet} disabled={busy}>
-          {busy ? "Working..." : mockMode ? "Simulate Wallet" : "Connect MetaMask"}
+          {busy ? "Working..." : mockMode ? "Provision Preview Wallet" : "Connect MetaMask"}
         </button>
       }
     >

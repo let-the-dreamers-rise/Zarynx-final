@@ -28,7 +28,7 @@ export default function ExecutionLogTable({ entries = [] }) {
                 <span className="mono-wrap">{entry.txHash || "n/a"}</span>
                 <span>
                   <StatusPill
-                    label={entry.result?.rejected ? "Rejected" : entry.result?.skipped ? "Skipped" : entry.result?.mode === "mock" ? "Simulated" : "Recorded"}
+                    label={entry.result?.rejected ? "Rejected" : entry.result?.skipped ? "Skipped" : entry.result?.mode === "mock" ? "Preview" : "Recorded"}
                     tone={entry.result?.rejected ? "danger" : entry.result?.skipped ? "warning" : "success"}
                   />
                 </span>

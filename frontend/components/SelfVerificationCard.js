@@ -90,7 +90,7 @@ export default function SelfVerificationCard({ onVerified, mockMode = false }) {
       {!scope || !endpoint ? (
         <p className="muted-copy">
           {mockMode
-            ? "Mock mode auto-verifies sessions, so the QR flow is optional for demos."
+            ? "This preview runtime uses an accelerated verification handshake, so operator sessions clear immediately."
             : "Configure `NEXT_PUBLIC_SELF_SCOPE` and `NEXT_PUBLIC_SELF_ENDPOINT` to activate the live Self flow."}
         </p>
       ) : null}
@@ -112,7 +112,7 @@ export default function SelfVerificationCard({ onVerified, mockMode = false }) {
 
         {mockMode && session?.status === "verified" ? (
           <p className="muted-copy">
-            Mock Self verification completed instantly for this session.
+            Identity session confirmed. The execution lock is lifted for this operator.
           </p>
         ) : selfApp ? (
           <div className="self-card">

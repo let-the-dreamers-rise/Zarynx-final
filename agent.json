@@ -19,18 +19,18 @@
   },
   "integrations": {
     "ens": "vitalik.eth",
-    "self": "mock-self-scope",
-    "venice": "mock-venice-router",
+    "self": "zarynx-preview-scope",
+    "venice": "zarynx-router-v1",
     "filecoinNetwork": "calibration",
     "locusBaseUrl": "https://beta-api.paywithlocus.com"
   },
   "evidence": {
-    "latestLogEntryCount": 7,
+    "latestLogEntryCount": 10,
     "locusWalletAddress": "0x9f6ec1480cbc88ac4697a9acb8024f751e5bf89a",
     "locusCreditRequestId": "f661941a-1b96-4079-b33c-c28aea60a6e7",
     "mockMode": true
   },
-  "updatedAt": "2026-03-23T04:45:30.289Z",
+  "updatedAt": "2026-03-23T06:02:04.590Z",
   "mode": "mock",
   "ipfsUri": "ipfs://bafy4bd988d104cbe9a4e031782ef4fa6bf36fad61e77f3e39b22bd09c5"
 }

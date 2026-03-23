@@ -103,7 +103,6 @@ async function executeIntent({ intent, userId }) {
     execution = {
       rejected: true,
       error: error.message,
-      mode: config.mockMode ? "mock" : "live",
     };
   }
 

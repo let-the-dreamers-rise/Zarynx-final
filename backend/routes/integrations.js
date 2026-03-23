@@ -26,7 +26,7 @@ router.get("/dashboard", async (_req, res) => {
     config: {
       ensName: config.ens.name,
       selfScope: config.self.scope || null,
-      veniceModel: config.mockMode ? "mock-venice-router" : config.venice.model || null,
+      veniceModel: config.mockMode ? "zarynx-router-v1" : config.venice.model || null,
       mockMode: config.mockMode,
     },
     authority: {

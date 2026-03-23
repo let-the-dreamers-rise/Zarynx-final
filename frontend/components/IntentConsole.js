@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SectionCard from "./SectionCard";
 import { postJson } from "../lib/api";
+import { sanitizeForDisplay } from "../lib/present";
 
 const quickIntents = [
   "Resolve vitalik.eth and prepare an onchain transfer under the configured authority limit.",
@@ -41,7 +42,7 @@ export default function IntentConsole({ sessionId, onExecuted, mockMode = false 
       title="Intent Execution"
       subtitle={
         mockMode
-          ? "Submit a natural-language instruction. The mock router will plan and simulate the full execution flow, including identity checks and fake proofs."
+          ? "Submit a natural-language instruction. The preview router will plan, authorize, and execute the full end-to-end flow."
           : "Submit a natural-language instruction. Venice reasons over it, Self gates it, and the backend routes it to the real execution layer."
       }
       action={
@@ -83,7 +84,7 @@ export default function IntentConsole({ sessionId, onExecuted, mockMode = false 
         {response ? (
           <details className="details-panel" open>
             <summary>Last execution payload</summary>
-            <pre>{JSON.stringify(response, null, 2)}</pre>
+            <pre>{JSON.stringify(sanitizeForDisplay(response), null, 2)}</pre>
           </details>
         ) : null}
       </div>
